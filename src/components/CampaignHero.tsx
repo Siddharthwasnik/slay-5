@@ -203,63 +203,24 @@ export const CampaignHero: React.FC<CampaignHeroProps> = ({
         </div>
       </header>
 
-      {/* Slide Navigation Chevrons (Desktop & Tablet) */}
-      <div className="absolute inset-y-0 left-2 right-2 z-20 flex items-center justify-between pointer-events-none px-2 sm:px-4">
-        <button
-          onClick={prevSlide}
-          aria-label="Previous slide"
-          className="pointer-events-auto w-10 h-10 rounded-full bg-black/35 hover:bg-black/60 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 active:scale-90"
-        >
-          <span className="material-symbols-outlined text-xl">chevron_left</span>
-        </button>
-        <button
-          onClick={nextSlide}
-          aria-label="Next slide"
-          className="pointer-events-auto w-10 h-10 rounded-full bg-black/35 hover:bg-black/60 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 active:scale-90"
-        >
-          <span className="material-symbols-outlined text-xl">chevron_right</span>
-        </button>
-      </div>
-
       {/* Monumental Centerpiece Wordmark (Fully Responsive, Never Cut Off) */}
-      <div className="relative z-10 w-full flex flex-col items-center justify-center my-auto px-4 pointer-events-none">
-        {/* Scalable Vector Brand Name Container */}
-        <div className="w-full max-w-4xl mx-auto flex flex-col items-center justify-center">
-          {/* SVG Text guarantees SLAYVANA scales proportionally across any viewport without horizontal truncation */}
-          <svg
-            viewBox="0 0 940 140"
-            className="w-full max-w-[850px] h-auto max-h-[16vh] sm:max-h-[20vh] select-none filter drop-shadow-[0_8px_32px_rgba(0,0,0,0.85)]"
-            aria-label="SLAYVANA"
-          >
-            <text
-              x="50%"
-              y="56%"
-              textAnchor="middle"
-              dominantBaseline="central"
-              fill="#ffffff"
-              fontFamily="'Syne', sans-serif"
-              fontWeight="900"
-              fontSize="120"
-              letterSpacing="0.04em"
-            >
-              SLAYVANA
-            </text>
-          </svg>
-
-          {/* Fallback accessible heading */}
-          <h1 className="sr-only">SLAYVANA — Contemporary Indian Fashion & Artisanal Handlooms</h1>
+      <div className="relative z-10 w-full flex flex-col items-center justify-center my-auto px-4 sm:px-6 pointer-events-none">
+        <div className="w-full max-w-5xl mx-auto flex flex-col items-center justify-center text-center">
+          <h1 className="font-syne font-black text-5xl sm:text-7xl md:text-8xl lg:text-[7rem] xl:text-[8rem] tracking-tight text-white uppercase select-none drop-shadow-[0_8px_36px_rgba(0,0,0,0.9)] leading-none px-2 text-center">
+            SLAYVANA
+          </h1>
 
           {/* Subtitle & Drop Badge */}
-          <div className="mt-2 sm:mt-3 flex flex-wrap items-center justify-center gap-2 pointer-events-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm tracking-widest uppercase font-semibold shadow-xl">
+          <div className="mt-3 sm:mt-4 flex flex-wrap items-center justify-center gap-2 pointer-events-auto">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm tracking-widest uppercase font-semibold shadow-xl">
               <span className="w-2 h-2 rounded-full bg-[#ff9876] animate-pulse"></span>
               <span>{current.tag}</span>
               <span className="text-white/40">•</span>
-              <span className="text-[#ffb59d]">Jaipur Atelier</span>
+              <span className="text-[#ffb59d]">JAIPUR ATELIER</span>
             </div>
           </div>
 
-          <p className="mt-2 text-white/95 text-xs sm:text-sm md:text-base max-w-md text-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] font-medium px-4">
+          <p className="mt-2 text-white/95 text-xs sm:text-sm md:text-base max-w-md text-center drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] font-medium px-4">
             {current.subtitle}
           </p>
         </div>
@@ -309,19 +270,37 @@ export const CampaignHero: React.FC<CampaignHeroProps> = ({
           <span className="material-symbols-outlined text-[18px]">east</span>
         </button>
 
-        {/* Carousel Slide Indicators */}
-        <nav aria-label="Campaign Slides" className="flex items-center gap-2.5 pt-1">
-          {slides.map((s, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveSlide(idx)}
-              aria-label={`Go to slide ${idx + 1}: ${s.tag}`}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                activeSlide === idx ? 'w-7 bg-white shadow-md' : 'w-2 bg-white/45 hover:bg-white/80'
-              }`}
-            />
-          ))}
-        </nav>
+        {/* Carousel Slide Indicators & Controls */}
+        <div className="flex items-center gap-3 pt-1">
+          <button
+            onClick={prevSlide}
+            aria-label="Previous slide"
+            className="w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 active:scale-90"
+          >
+            <span className="material-symbols-outlined text-base">chevron_left</span>
+          </button>
+
+          <nav aria-label="Campaign Slides" className="flex items-center gap-2">
+            {slides.map((s, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveSlide(idx)}
+                aria-label={`Go to slide ${idx + 1}: ${s.tag}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  activeSlide === idx ? 'w-7 bg-white shadow-md' : 'w-2 bg-white/45 hover:bg-white/80'
+                }`}
+              />
+            ))}
+          </nav>
+
+          <button
+            onClick={nextSlide}
+            aria-label="Next slide"
+            className="w-7 h-7 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-white flex items-center justify-center transition-all border border-white/20 active:scale-90"
+          >
+            <span className="material-symbols-outlined text-base">chevron_right</span>
+          </button>
+        </div>
       </div>
     </section>
   );
